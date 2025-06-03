@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build Maven') {
             steps {
-               checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ajeet-lab/docker-jenkins-integration.git']])
+               checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ajeet-lab/docker-jenkins-k8s-integration.git']])
                sh 'mvn clean install'
               }
         }
@@ -22,6 +22,12 @@ pipeline {
                     sh 'docker login -u ajeet9415k@gmail.com -p ${DOCKER_PASS}'
                 }
                sh 'docker push ajeet9415/docker-jenkins-k8s-integration:01'
+              }
+        }
+        
+        stage('Deploy') {
+            steps {
+                kubernetesDeploy (configs: 'deployment.yml', kubeconfigId: 'kubeconfig')
               }
         }
         
