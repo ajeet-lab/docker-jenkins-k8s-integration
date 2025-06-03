@@ -28,6 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 kubernetesDeploy (configs: 'deployment.yml', kubeconfigId: 'kubeconfig')
+                sh 'kubectl rollout restart deployment docker-jenkins-k8s-deployment'
               }
         }
         
