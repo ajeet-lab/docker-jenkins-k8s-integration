@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build Docker') {
             steps {
-               sh 'docker build -t ajeet9415/docker-jenkins-k8s-integration:01 .'
+               sh 'docker build -t ajeet9415/docker-jenkins-k8s-integration:02 .'
               }
         }
         stage('Push image to dockerhub') {
@@ -21,7 +21,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'DOCKER_PASS', variable: 'DOCKER_PASS')]) {
                     sh 'docker login -u ajeet9415k@gmail.com -p ${DOCKER_PASS}'
                 }
-               sh 'docker push ajeet9415/docker-jenkins-k8s-integration:01'
+               sh 'docker push ajeet9415/docker-jenkins-k8s-integration:02'
               }
         }
         
