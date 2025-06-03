@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DockerJenkinsIntegrationApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
+		System.out.println("Starting point here...");
 		SpringApplication.run(DockerJenkinsIntegrationApplication.class, args);
 	}
 
